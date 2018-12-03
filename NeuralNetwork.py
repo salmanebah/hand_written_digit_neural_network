@@ -15,13 +15,24 @@ class NeuralNetwork:
         self.weights_input_hidden = numpy.random.normal(0.0, pow(self.hidden_nodes, -0.5), (self.hidden_nodes, self.input_nodes))
         self.weights_hidden_output = numpy.random.normal(0.0, pow(self.hidden_nodes, -0.5), (self.output_nodes, self.hidden_nodes))
     
-    def train():
+    def train(self, input_lists, target_lists):
+        inputs = numpy.array(input_lists, ndmin=2).T
+        targets = numpy.array(target_lists, ndmin=2).T
+
+        # Feed forward
+        hidden_layer_inputs = numpy.dot(self.weights_input_hidden, inputs)
+        hidden_layer_ouputs = self.activation_function(hidden_layer_inputs)
+        final_layer_inputs = numpy.dot(self.weights_hidden_output, hidden_layer_ouputs)
+        final_layer_outputs = self.activation_function(final_layer_inputs)
+
+        # Back propagation
+        
         pass
 
     def query(self, input_lists):
         inputs = numpy.array(input_lists, ndmin=2).T
 
-        # Feedforward
+        # Feed forward
         hidden_layer_inputs = numpy.dot(self.weights_input_hidden, inputs)
         hidden_layer_ouputs = self.activation_function(hidden_layer_inputs)
         final_layer_inputs = numpy.dot(self.weights_hidden_output, hidden_layer_ouputs)
