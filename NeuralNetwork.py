@@ -19,15 +19,22 @@ class NeuralNetwork:
         inputs = numpy.array(input_lists, ndmin=2).T
         targets = numpy.array(target_lists, ndmin=2).T
 
-        # Feed forward
+        # Feedforward
         hidden_layer_inputs = numpy.dot(self.weights_input_hidden, inputs)
         hidden_layer_ouputs = self.activation_function(hidden_layer_inputs)
         final_layer_inputs = numpy.dot(self.weights_hidden_output, hidden_layer_ouputs)
         final_layer_outputs = self.activation_function(final_layer_inputs)
 
-        # Back propagation
+        # Backpropagation
+        output_layer_errors = targets - final_layer_outputs
+        hidden_layer_errors = numpy.dot(self.weights_hidden_output.T, output_layer_errors)
+        # Update weights
+        self.weights_hidden_output += self.learning_rate * numpy.dot((output_layer_errors * final_layer_outputs * (1.0 - final_layer_outputs)), 
+                                                                     numpy.transpose(hidden_layer_ouputs))
+        self.weights_input_hidden += self.learning_rate * numpy.dot((hidden_layer_errors * hidden_layer_ouputs * (1.0 - hidden_layer_ouputs)),
+                                                                     numpy.transpose(inputs))
+
         
-        pass
 
     def query(self, input_lists):
         inputs = numpy.array(input_lists, ndmin=2).T
