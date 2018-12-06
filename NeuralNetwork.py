@@ -39,7 +39,7 @@ class NeuralNetwork:
     def query(self, input_lists):
         inputs = numpy.array(input_lists, ndmin=2).T
 
-        # Feed forward
+        # Feedforward
         hidden_layer_inputs = numpy.dot(self.weights_input_hidden, inputs)
         hidden_layer_ouputs = self.activation_function(hidden_layer_inputs)
         final_layer_inputs = numpy.dot(self.weights_hidden_output, hidden_layer_ouputs)
