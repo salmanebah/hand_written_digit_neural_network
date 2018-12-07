@@ -13,7 +13,7 @@ class NeuralNetwork:
 
         # init weights
         self.weights_input_hidden = numpy.random.normal(0.0, pow(self.hidden_nodes, -0.5), (self.hidden_nodes, self.input_nodes))
-        self.weights_hidden_output = numpy.random.normal(0.0, pow(self.hidden_nodes, -0.5), (self.output_nodes, self.hidden_nodes))
+        self.weights_hidden_output = numpy.random.normal(0.0, pow(self.output_nodes, -0.5), (self.output_nodes, self.hidden_nodes))
     
     def train(self, input_lists, target_lists):
         inputs = numpy.array(input_lists, ndmin=2).T

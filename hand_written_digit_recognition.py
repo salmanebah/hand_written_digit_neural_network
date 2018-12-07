@@ -16,7 +16,7 @@ training_data_file.close()
 # train the network
 for training_data in training_data_list:
     all_values = training_data.split(',')
-    inputs = (numpy.asfarray(all_values[1:]) / 255 * 0.99) + 0.01
+    inputs = (numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
     targets = numpy.zeros(NR_OUTPUT_NODES) + 0.01
     targets[int(all_values[0])] + 0.99
     neural_network.train(inputs, targets)
