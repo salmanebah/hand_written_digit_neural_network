@@ -15,9 +15,9 @@ class NeuralNetwork:
         self.weights_input_hidden = numpy.random.normal(0.0, pow(self.input_nodes, -0.5), (self.hidden_nodes, self.input_nodes))
         self.weights_hidden_output = numpy.random.normal(0.0, pow(self.hidden_nodes, -0.5), (self.output_nodes, self.hidden_nodes))
     
-    def train(self, input_lists, target_lists):
-        inputs = numpy.array(input_lists, ndmin=2).T
-        targets = numpy.array(target_lists, ndmin=2).T
+    def train(self, input_list, target_list):
+        inputs = numpy.array(input_list, ndmin=2).T
+        targets = numpy.array(target_list, ndmin=2).T
 
         # Feedforward
         hidden_layer_inputs = numpy.dot(self.weights_input_hidden, inputs)
@@ -36,8 +36,8 @@ class NeuralNetwork:
 
         
 
-    def query(self, input_lists):
-        inputs = numpy.array(input_lists, ndmin=2).T
+    def query(self, input_list):
+        inputs = numpy.array(input_list, ndmin=2).T
 
         # Feedforward
         hidden_layer_inputs = numpy.dot(self.weights_input_hidden, inputs)
